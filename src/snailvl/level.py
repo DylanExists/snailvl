@@ -1,7 +1,10 @@
 from re import findall
 import os
 
+from sympy import false, true
+
 def createBlank(path):
+    """Creates a blank level"""
     newLevel = Level("").__new__(Level)
     newLevel.__init__(path)
     if not os.path.exists(path):
@@ -16,6 +19,7 @@ def createBlank(path):
 class Level:
     def __init__(self, path):
         self.path = path
+
     def getRawLevel(self) -> list:
         """Get the level's data in a plain list"""
 
@@ -191,3 +195,18 @@ class Level:
             writeList[i] = current
         
         self.writeRawLevel(writeList)
+    
+    def getEntry(self, entry):
+        """Get a single entry from the level"""
+        data = self.getLevel()
+        try:
+            return data.__getitem__(entry)
+        except:
+            return "Entry Not Found"
+
+    def writeEntry(self, entry, data):
+        """Edit a single entry in a level"""
+        _data = self.getLevel()
+        _data.__setitem__(entry, data)
+        self.writeLevel(_data)
+
