@@ -210,3 +210,13 @@ class Level:
         _data.__setitem__(entry, data)
         self.writeLevel(_data)
 
+    def addObject(self, _type, data):
+        """Adds a single object to the level"""
+        objects = self.getEntry("PLACED OBJECTS")
+        sameTypeObjects = objects.__getitem__(_type)
+        quantity = sameTypeObjects.__getitem__("QUANTITY")
+        sameTypeObjects.__setitem__("QUANTITY", quantity + 1)
+        sameTypeObjects.__setitem__(_type + str(quantity), data)
+        objects.__setitem__(_type, sameTypeObjects)
+        self.writeEntry("PLACED OBJECTS", objects)
+
