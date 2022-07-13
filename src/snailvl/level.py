@@ -1,18 +1,6 @@
 from re import findall
 import os
 
-def createBlank(path):
-    """Creates a blank level"""
-    newLevel = Level("").__new__(Level)
-    newLevel.__init__(path)
-    if not os.path.exists(path):
-        open(path, "a").close()
-    f = open(os.path.dirname(os.path.abspath(__file__)) + "/blank.lvl", "r")
-    blank = f.readlines()
-    blank = [b.strip() for b in blank]
-    f.close()
-    newLevel.writeRawLevel(blank)
-    return newLevel
 
 class Level:
     def __init__(self, path):
