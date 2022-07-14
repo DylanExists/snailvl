@@ -2,7 +2,7 @@ from ..level import *
 from pathlib import Path
 
 class TestLevelClass:
-    test_level = Level(str(Path(__file__).parent // "data\TestLevel1.lvl"))
+    test_level = Level(str(Path(__file__).parent / "data\TestLevel1.lvl"))
 
     def test_raw_get_and_write(self):
         test_data_one = self.test_level.getRawLevel()
