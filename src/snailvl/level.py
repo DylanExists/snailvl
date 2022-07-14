@@ -97,10 +97,11 @@ class Level:
     # get wires
     def writeRawLevel(self, data) -> None:
         """Write to the level with a plain list"""
-        for i in range(len(data)):
-            data[i] += "\n"
+        localData = data.copy() # for some reason when we modify data it modifies the global variable as well, so we gotta make a local copy
+        for i in range(len(localData)):
+            localData[i] += "\n"
         with open(self.path, "w") as file:
-            file.writelines(data)
+            file.writelines(localData)
     
     def writeLevel(self, data) -> None:
         """Write to the level with a dictionary"""
